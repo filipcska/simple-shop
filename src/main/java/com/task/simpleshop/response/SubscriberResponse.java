@@ -11,6 +11,6 @@ public record SubscriberResponse(@JsonProperty("subscriber_id") long id,
                                  @JsonProperty("subscriber_joined_on") @JsonFormat(pattern="dd-MM-yyyy") LocalDateTime createdAt) {
 
     public SubscriberResponse(Subscriber subscriber) {
-        this(subscriber.getId(), subscriber.getFirstName(), subscriber.getCreatedAt());
+        this(subscriber.getId(), subscriber.getFirstName() + " " + subscriber.getLastName(), subscriber.getCreatedAt());
     }
 }

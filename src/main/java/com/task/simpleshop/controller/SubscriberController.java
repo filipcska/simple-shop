@@ -30,7 +30,7 @@ import java.util.List;
 
 public class SubscriberController {
 
-    private final String SUBSCRIBER_NOT_FOUND = "Subscriber with id %s is not found";
+    private static final String SUBSCRIBER_NOT_FOUND = "Subscriber with id %s is not found";
 
     private SubscriberService subscriberService;
 
@@ -85,8 +85,9 @@ public class SubscriberController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<Object> getAllSubribers() {
-        return ResponseEntity.status(HttpStatus.OK).body(subscriberService.getAllSubscribers());
+    public ResponseEntity<List<SubscriberResponse>> getAllSubscribers() {
+        final List<SubscriberResponse> subscriberResponses = subscriberService.getAllSubscribers().stream().map(SubscriberResponse::new).toList();
+        return ResponseEntity.status(HttpStatus.OK).body(subscriberResponses);
     }
 
 }

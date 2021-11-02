@@ -67,8 +67,9 @@ public class ProductController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<Object> getAllProducts() {
-        return ResponseEntity.status(HttpStatus.OK).body(productService.getAllProducts());
+    public ResponseEntity<List<ProductResponse>> getAllProducts() {
+        final List<ProductResponse> productResponses = productService.getAllProducts().stream().map(ProductResponse::new).toList();
+        return ResponseEntity.status(HttpStatus.OK).body(productResponses);
     }
 
     private ResponseEntity<Object> buildProductResponse(Product product, long productId) {
