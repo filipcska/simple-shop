@@ -13,7 +13,7 @@ public class AuditRepositoryImpl {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public List<ProductPopularityDto> findOrderedBySeatNumberLimitedTo(int limit) {
+    public List<ProductPopularityDto> findMostPopularProductsLimitedTo(int limit) {
         return entityManager.createQuery("""
                         select new com.task.simpleshop.dto.ProductPopularityDto(sp.productId, p.name, count(sp.subscriberId) as times_purchased)
                         from Product p, SubscriberProduct sp

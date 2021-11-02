@@ -40,7 +40,7 @@ public class AuditService {
     }
 
     public List<ProductPopularityDto> getMostPopularProducts(int limit) {
-        return auditRepository.findOrderedBySeatNumberLimitedTo(limit);
+        return auditRepository.findMostPopularProductsLimitedTo(limit);
     }
 
 
